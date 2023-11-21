@@ -18,20 +18,6 @@ function registerUser($conn, $firstname, $lastname, $username, $password, $role)
     return $conn->query($sql);
 }
 
-// Fungsi untuk menangani login
-// function loginUser($conn, $username, $password) {
-//     $sql = "SELECT * FROM users WHERE username='$username'";
-//     $result = $conn->query($sql);
-
-//     if ($result->num_rows == 1) {
-//         $row = $result->fetch_assoc();
-//         if (password_verify($password, $row['password'])) {
-//             return true;
-//         }
-//     }
-
-//     return false;
-// }
 
 // Tangani formulir registrasi
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
@@ -43,28 +29,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
 
     if (registerUser($conn, $firstname, $lastname, $username, $password, $role)) {
         echo '<script>      
-        alert ("Registrasi berhasil!"); document.location="index.php";
+        alert ("Registrasi berhasil!, silakan login kembali"); document.location="login.php";
         </script>';
         echo "Registrasi gagal!";
     }
 }
 
-// // Tangani formulir login
-// if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
-//     $username = $_POST["username"];
-//     $password = $_POST["password"];
 
-//     if (loginUser($conn, $username, $password)) {
-//         echo '<script> 
-//         alert ("Login berhasil!"); document.location="pengguna.php"; </script>';
-//     } else {
-//         echo '<script> 
-//         alert ("Login gagal;"); </script>';
-//     }
-// }
-
-// $conn->close();
-// ?>
+ ?>
 
 
 <!DOCTYPE html>

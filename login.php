@@ -11,13 +11,6 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// // Fungsi untuk menangani registrasi
-// function registerUser($conn, $username, $password) {
-//     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-//     $sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashedPassword')";
-//     return $conn->query($sql);
-// }
-
 // Fungsi untuk menangani login
 function loginUser($conn, $username, $password, $role) {
     $sql = "SELECT * FROM users WHERE username='$username' AND role='$role'";
@@ -32,17 +25,6 @@ function loginUser($conn, $username, $password, $role) {
 }
 }
 
-// // Tangani formulir registrasi
-// if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
-//     $username = $_POST["username"];
-//     $password = $_POST["password"];
-
-//     if (registerUser($conn, $username, $password)) {
-//         echo "Registrasi berhasil!";
-//     } else {
-//         echo "Registrasi gagal!";
-//     }
-// }
 
 // Tangani formulir login
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
@@ -58,35 +40,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
 
          // Set cookie "Remember Me" jika dicentang
         if (isset($_POST['remember'])) {
-            setcookie('username', $username, time() + (86400 * 30), "/"); // Cookie berlaku selama 30 hari
-            setcookie('role', $role, time() + (86400 * 30), "/");
+            setcookie('username', $username, time() + (86400 * 1), "/"); // Cookie berlaku selama 1 hari
+            setcookie('role', $role, time() + (86400 * 1), "/");
         }
 
         // Arahkan ke halaman sesuai dengan peran
         if ($role == 'client') {
-            header('Location: pengguna.php');
+            echo  '<script> 
+             alert ("Login berhasil!");</script>';
+        }
         } else {
-            header('Location: company.php');
+            echo  '<script> 
+            alert ("Login berhasil!"); document.location="client-index.html";</script>';
         } 
-        // else {
-        //     // Peran tidak valid, tambahkan penanganan error sesuai kebutuhan
-        //     echo "Invalid role";
-        // }
 
     } else {
         echo '<script> 
         alert ("Login gagal!"); </script>';
     }
-    //     if ($role = "client") {
-    //         echo  '<script> 
-    //         alert ("Login berhasil!");</script>';
-    //         }
-    // } else {
-    //     echo '<script> 
-    //     alert ("Login gagal!"); </script>';
-    // }
-}
-
+    
 $conn->close();
 ?>
 
@@ -131,7 +103,7 @@ $conn->close();
                 <div class="input-group mb-3">
                     <input type="text" class="form-control form-control-lg bg-light fs-6" id="username" name="username" placeholder="Email address/username">
                 </div>
-                <div class="input-group mb-1">
+                <div class="input-group mb-3">
                     <input type="password" class="form-control form-control-lg bg-light fs-6" id="password" name="password" placeholder="Password">
                 </div>
                 <div>
