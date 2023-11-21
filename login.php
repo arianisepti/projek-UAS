@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
         // Arahkan ke halaman sesuai dengan peran
             if ($role == 'client') {
                 echo  '<script> 
-                alert ("Login berhasil!"); document.location="client-index.php"; </script>';
+                alert ("Login berhasil!"); </script>';
             }
             else {
                 echo  '<script> 
