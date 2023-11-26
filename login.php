@@ -43,16 +43,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
             setcookie('username', $username, time() + (86400 * 1), "/"); // Cookie berlaku selama 1 hari
             setcookie('role', $role, time() + (86400 * 1), "/");
         }
+
+        echo  '<script> 
+                alert ("Login berhasil!");</script>';
         
-        // Arahkan ke halaman sesuai dengan peran
-            if ($role == 'client') {
-                echo  '<script> 
-                alert ("Login berhasil!");</script>';
-            }
-            else {
-                echo  '<script> 
-                alert ("Login berhasil!");</script>';
-            } 
+        // // Arahkan ke halaman sesuai dengan peran
+        //     if ($role == 'client') {
+        //         echo  '<script> 
+        //         alert ("Login berhasil!");</script>';
+        //     }
+        //     else {
+        //         echo  '<script> 
+        //         alert ("Login berhasil!");</script>';
+        //     } 
 
     } else {
             echo '<script> 
