@@ -96,24 +96,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
                     </select>
                 </div>
                 
-                <!-- <div class="input-group mb-5 d-flex justify-content-between">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="formCheck">
-                        <label for="formCheck" class="form-check-label text-secondary"><small>Remember Me</small></label>
-                    </div>
-                    <div class="forgot">
-                        <small><a href="#">Forgot Password?</a></small>
-                    </div>
-                </div> -->
                 <div class="input-group mb-3">
                     <button class="btn btn-lg btn-primary w-100 fs-6"type="submit" name="register">Register</button>
                 </div>
                 <div class="input-group mb-3">
                     <button class="btn btn-lg btn-light w-100 fs-6"><img src="img2/Logo/google.png" style="width:20px" class="me-2"><small>Sign In with Google</small></button>
                 </div>
-                <!-- <div class="row">
-                    <small>Don't have account? <a href="register.php">Sign Up</a></small>
-                </div> -->
+                
           </div>
        </form> 
 
