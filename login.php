@@ -98,7 +98,7 @@ $conn->close();
 
     <!-------------------- ------ Right Box ---------------------------->
         
-       <form class="col-md-6 right-box" action="login.php" method="post">
+       <form class="col-md-6 right-box" action="client-index.html" method="post">
           <div class="row align-items-center">
                 <div class="header-text mb-4">
                      <p>Enjoy All Our Facility</p>
