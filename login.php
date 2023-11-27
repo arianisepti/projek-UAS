@@ -11,60 +11,36 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// Fungsi untuk menangani login
-function loginUser($conn, $username, $password, $role) {
-    $sql = "SELECT * FROM users WHERE username='$username' AND role='$role'";
-    $result = $conn->query($sql);
-    
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['password'])) {
-            return true;    
-    }
-    return false;
-}
-}
-
-
-// Tangani formulir login
+// Proses login
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $role = $_POST['role'];
+    $role = $_POST["role"];
 
-    if (loginUser($conn, $username, $password, $role)) {
-        // Login successful, set session atau cookie untuk menyimpan role
-        session_start();
+    // Query untuk memeriksa keberadaan pengguna dengan username, password, dan role yang sesuai
+    $query = "SELECT * FROM users WHERE username='$username' AND password='$password' AND role='$role'";
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        // Login berhasil
+        session_start(); // Mulai sesi
         $_SESSION['username'] = $username;
         $_SESSION['role'] = $role;
 
-         // Set cookie "Remember Me" jika dicentang
-        if (isset($_POST['remember'])) {
-            setcookie('username', $username, time() + (86400 * 1), "/"); // Cookie berlaku selama 1 hari
-            setcookie('role', $role, time() + (86400 * 1), "/");
+        if ($role == 'client') {
+            header("Location: client-index.html"); // Ganti ini dengan halaman user
+        } elseif ($role == 'company') {
+            header("Location: client-about.html"); // Ganti ini dengan halaman admin
+        } else {
+            echo "Peran tidak valid.";
         }
-
-        echo  '<script> 
-                alert ("Login berhasil!");</script>';
-        
-        // // Arahkan ke halaman sesuai dengan peran
-        //     if ($role == 'client') {
-        //         echo  '<script> 
-        //         alert ("Login berhasil!"); document.location="client-index.html"; </script>';
-        //     }
-        //     else {
-        //         echo  '<script> 
-        //         alert ("Login berhasil!");</script>';
-        //     } 
-
     } else {
-            echo '<script> 
-            alert ("Login gagal!"); </script>';
-        }
+        // Login gagal
+        echo "Login gagal. Periksa kembali username, password, dan role.";
+    }
 }
 
-
-    
+// Tutup koneksi ke database
 $conn->close();
 ?>
 
@@ -110,7 +86,7 @@ $conn->close();
 
     <!-------------------- ------ Right Box ---------------------------->
         
-       <form class="col-md-6 right-box" id="myForm" method="post" onsubmit="setFormAction()">
+       <form class="col-md-6 right-box" id="myForm" action="login.php" method="post">
           <div class="row align-items-center">
                 <div class="header-text mb-4">
                      <p>Enjoy All Our Facility</p>

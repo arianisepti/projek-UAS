@@ -11,30 +11,24 @@ if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// Fungsi untuk menangani registrasi
-function registerUser($conn, $firstname, $lastname, $username, $password, $role) {
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO users (firstname, lastname, username, password, role) VALUES ('$firstname', '$lastname', '$username', '$hashedPassword', '$role')";
-    return $conn->query($sql);
-}
-
-
-// Tangani formulir registrasi
+// Proses registrasi
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
-    $firstname = $_POST["firstname"];
-    $lastname = $_POST["lastname"];
     $username = $_POST["username"];
     $password = $_POST["password"];
-    $role = $_POST['role'];
+    $role = $_POST["role"];
 
-    if (registerUser($conn, $firstname, $lastname, $username, $password, $role)) {
-        echo '<script>      
-        alert ("Registrasi berhasil!, silakan login kembali"); document.location="login.php";
-        </script>';
-        echo "Registrasi gagal!";
+    // Query untuk menambahkan pengguna baru ke dalam tabel
+    $query = "INSERT INTO users (username, password, role) VALUES ('$username', '$password', '$role')";
+    
+    if ($conn->query($query) === TRUE) {
+        echo "Registrasi berhasil";
+    } else {
+        echo "Error: " . $query . "<br>" . $conn->error;
     }
 }
 
+
+$conn->close();
 
  ?>
 
@@ -84,10 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
                     <input type="text" class="form-control form-control-lg bg-light fs-6" id="lastname" name="lastname" placeholder="Lastname">
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control form-control-lg bg-light fs-6" id="reg_username" name="username" placeholder="Email">
+                    <input type="text" class="form-control form-control-lg bg-light fs-6" id="username" name="username" placeholder="Email">
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control form-control-lg bg-light fs-6" id="reg_password" name="password" placeholder="Password">
+                    <input type="password" class="form-control form-control-lg bg-light fs-6" id="password" name="password" placeholder="Password">
                 </div>
                 <div class="input-group mb-3">
                     <select class="form-control form-control-lg bg-light fs-6" id="role" name="role" >
