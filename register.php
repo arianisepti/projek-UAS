@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["register"])) {
     $query = "INSERT INTO users (username, password, role) VALUES ('$username', '$password', '$role')";
     
     if ($conn->query($query) === TRUE) {
-        echo "Registrasi berhasil";
+        echo  '<script> alert ("Registrasi berhasil"); document.location="login.php"; </script>';
     } else {
         echo "Error: " . $query . "<br>" . $conn->error;
     }
