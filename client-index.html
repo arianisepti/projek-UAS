@@ -139,9 +139,20 @@
               Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no.
               Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.
             </p>
+            <button onclick="scrollsection('getstarted')">
             <a href="" class="btn btn-primary py-3 px-5 me-3 animated fadeIn"
-              >Get Started</a
-            >
+              >Get Started</a>
+            </button>
+            <script>
+              function scrollsection(getstarted) {
+                const section = document.getElementById(getstarted);
+                if (section) {
+                  section.scrollIntoView({ behavior: 'smooth' });
+                }
+              }
+            </script>
+              </div>
+              </div>
           </div>
           <div class="col-md-6 animated fadeIn">
             <div class="owl-carousel header-carousel">
@@ -201,6 +212,7 @@
       <!-- Search End -->
 
       <!-- Category Start -->
+      <section id="getstarted">
       <div class="container-xxl py-5">
         <div class="container">
           <div
@@ -333,7 +345,7 @@
                   <div class="icon mb-3">
                     <img
                       class="img-fluid"
-                      src="img/icon-condominium.png"
+                      src="img2/Photo/shop.jpg"
                       alt="Icon"
                     />
                   </div>
@@ -363,6 +375,7 @@
           </div>
         </div>
       </div>
+    </section>
       <!-- Category End -->
 
       <!-- About Start -->
