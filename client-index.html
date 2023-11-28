@@ -139,7 +139,7 @@
               Vero elitr justo clita lorem. Ipsum dolor at sed stet sit diam no.
               Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.
             </p>
-            <button class="btn btn-primary py-3 px-5 me-3 animated fadeIn" onclick="scrollToSection('getatarted')"
+            <button class="btn btn-primary py-3 px-5 me-3 animated fadeIn" onclick="scrollToSection('getstarted')"
               >Get Started</button>
           </div>
           <div class="col-md-6 animated fadeIn">
@@ -207,7 +207,7 @@
             data-wow-delay="0.1s"
             style="max-width: 600px"
           >
-            <section id="gettarted"><h1 class="mb-3">Property Types</h1></section>
+            <section id="getstarted"><h1 class="mb-3">Property Types</h1></section>
             <p>
               Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut
               dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed
@@ -1661,9 +1661,13 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
     <script>
-      function scrollToSection(gettarted) {
-        document.getElementById(gettarted).scrollIntoView({ behavior: 'smooth' });
+      function scrollToSection(getstarted) {
+        const section = document.getElementById(getstarted);
+        if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     </script>
 
