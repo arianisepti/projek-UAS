@@ -89,6 +89,22 @@
     </div>
 
     <script>
+        // Memuat data dari local storage saat halaman dimuat
+        document.getElementById("nama").value = localStorage.getItem("nama") || "";
+        document.getElementById("tempatlahir").value = localStorage.getItem("tempatlahir") || "";
+        document.getElementById("tanggallahir").value = localStorage.getItem("tanggallahir") || "";
+        document.getElementById("jk").value = localStorage.getItem("jk") || "";
+
+
+        var profilePicturePath = localStorage.getItem("profilePicture");
+        if (profilePicturePath) {
+            var outputProfilePicture = document.getElementById("outputProfilePicture");
+            outputProfilePicture.src = profilePicturePath;
+            outputProfilePicture.style.display = "block";
+        }
+
+
+
         document.getElementById("form").addEventListener("submit", function(event) {
             event.preventDefault();
             // Mengambil nilai dari form
