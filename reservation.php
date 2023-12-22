@@ -3,7 +3,7 @@
 $host = "localhost";
 $username = "root"; 
 $password = ""; 
-$database = "reservation";
+$database = "uas";
 
 $conn = mysqli_connect($host, $username, $password, $database);
 
