@@ -126,7 +126,7 @@ if (isset($_GET['cancel'])) {
                     <td><?php echo $reservation['status']; ?></td>
                     <td>
                         <?php if ($reservation['status'] == 'PENDING') : ?>
-                            <a href="index.php?cancel=<?php echo $index; ?>">Batal</a>
+                            <a href="reservation.php?cancel=<?php echo $index; ?>">Batal</a>
                         <?php endif; ?>
                     </td>
                 </tr>
