@@ -95,7 +95,7 @@ if (isset($_GET['cancel'])) {
     <?php if (isset($message)) : ?>
         <p class="success"><?php echo $message; ?></p>
     <?php endif; ?>
-    <form action="index.php" method="post">
+    <form action="reservation.php" method="post">
         <label for="nama">Nama:</label>
         <input type="text" name="nama" required><br>
 
