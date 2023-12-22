@@ -13,7 +13,7 @@ if (!$conn) {
 
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
     // Simpan data pemesanan ke session
     $reservation = array(
         'nama' => $_POST['nama'],
@@ -105,7 +105,7 @@ if (isset($_GET['cancel'])) {
         <label for="tanggal_checkout">Tanggal Check-out:</label>
         <input type="date" name="tanggal_checkout" required><br>
 
-        <input type="submit" value="Pesan">
+        <button class="" type="submit" name="pesan">Pesan</button>
     </form>
 
     <?php if (isset($_SESSION['history'])) : ?>

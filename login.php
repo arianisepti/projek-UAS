@@ -54,18 +54,7 @@ $conn->close();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Login</title>
-    <!-- <script>
-    function setFormAction() {
-        var form = document.getElementById('myForm');
-        var selectedOption = document.getElementById('role').value;
-
-        if (selectedOption === 'client') {
-        form.action = 'client-index.html';
-        } else if (selectedOption === 'company') {
-        form.action = 'client-about.html';
-        }
-    }
-</script> -->
+    
 </head>
 <body>
 
