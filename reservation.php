@@ -23,12 +23,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
         'status' => 'PENDING' // Status awal
     );
 
-    // Retrieve the auto-incremented ID
-    $reservation['id'] = $stmt->insert_id;
-
+    
 
      // Query untuk menambahkan pemesanan ke dalam tabel
      $query = "INSERT INTO reservation (nama, tanggal_checkin, tanggal_checkout, status) VALUES (?, ?, ?, ?, ?)";
+
+
+     // Assuming you have a database connection named $conn
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ssss", $reservation['nama'], $reservation['tanggal_checkin'], $reservation['tanggal_checkout'], $reservation['status']);
+    $stmt->execute();
+
+    // Retrieve the auto-incremented ID
+    $reservation['id'] = $stmt->insert_id;
+
     
     // Simpan data pemesanan ke histori
     if (!isset($_SESSION['history'])) {
