@@ -409,7 +409,7 @@ $conn->close();
 
       <!-- Reservation Start -->
       <div class="container -xxl py-5" style="background-color : white">
-      <form class="col-md-6 right-box" id="myForm" action="reservation.php" method="post">
+      <form class="col-md-6 right-box" id="myForm" action="reservation1.php" method="post">
           <div class="row align-items-center">
                 <div class="header-text mb-4">
                      <p>RESERVATION</p>
@@ -451,7 +451,7 @@ $conn->close();
                     <td><?php echo $reservation['status']; ?></td>
                     <td>
                         <?php if ($reservation['status'] == 'PENDING') : ?>
-                            <a href="reservation.php?cancel=<?php echo $index; ?>">Batal</a>
+                            <a href="reservation1.php?cancel=<?php echo $index; ?>">Batal</a>
                         <?php endif; ?>
                     </td>
                 </tr>
