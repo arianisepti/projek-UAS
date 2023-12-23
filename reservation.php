@@ -31,7 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
 
      // Assuming you have a database connection named $conn
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ssss", $reservation['nama'], $reservation['tanggal_checkin'], $reservation['tanggal_checkout'], $reservation['status']);
     $stmt->execute();
 
     // Retrieve the auto-incremented ID
