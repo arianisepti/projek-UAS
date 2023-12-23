@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
   
   // Simpan data pemesanan ke session
     $reservation = array(
-        'id' =>  $reservationId,
+        'id' =>   $reservationId,
         'nama' => $_POST['nama'],
         'tanggal_checkin' => $_POST['tanggal_checkin'],
         'tanggal_checkout' => $_POST['tanggal_checkout'],
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
 
      // Gunakan prepared statement untuk mencegah SQL injection
      $stmt = $conn->prepare($query);
-     $stmt->bind_param("ssss", $reservationId, $reservation['nama'], $reservation['tanggal_checkin'], $reservation['tanggal_checkout'], $reservation['status']);
+     $stmt->bind_param("ssss", $reservation['id'], $reservation['nama'], $reservation['tanggal_checkin'], $reservation['tanggal_checkout'], $reservation['status']);
  
      // Eksekusi statement
      $stmt->execute();
@@ -455,7 +455,7 @@ $conn->close();
             </tr>
             <?php foreach ($_SESSION['history'] as $index => $reservation) : ?>
                 <tr>
-                    <td><?php echo $reservationId; ?></td>
+                    <td><?php echo $reservation['id']; ?></td>
                     <td><?php echo $reservation['nama']; ?></td>
                     <td><?php echo $reservation['tanggal_checkin']; ?></td>
                     <td><?php echo $reservation['tanggal_checkout']; ?></td>
