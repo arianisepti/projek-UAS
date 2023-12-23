@@ -464,9 +464,9 @@ $conn->close();
                     <td><?php echo $reservation['status']; ?></td>
                     <td>
                         <?php if ($reservation['status'] == 'PENDING') : ?>
-                            <a href="reservation1.php?cancel=<?php echo $index; ?>">Batal</a>
-                            <a href="reservation1.php?delete=<?php echo $index; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus histori ini?')">Hapus</a>
+                            <a href="reservation1.php?cancel=<?php echo $index; ?>">Batal</a> 
                         <?php endif; ?>
+                        <a href="reservation1.php?delete=<?php echo $index; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus histori ini?')">Hapus</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
