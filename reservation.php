@@ -13,27 +13,21 @@ if (!$conn) {
 
 session_start();
 
- // Query untuk menambahkan pemesanan ke dalam tabel
- $query = "INSERT INTO reservation (nama, tanggal_checkin, tanggal_checkout, status) VALUES (?, ?, ?, ?, ?)";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
-  
-      if ($conn->query($query) === TRUE) {
-        $reservation_id = $conn->insert_id; // Ambil ID pemesanan baru
-        echo "Pemesanan berhasil! ID Pemesanan Anda: " . $reservation_id;
-    } else {
-        echo "Error: " . $query . "<br>" . $conn->error;
-    }
-
+ 
   // Simpan data pemesanan ke session
     $reservation = array(
-        'id' => $reservation_id,
+        'id' => generateReservationId(),
         'nama' => $_POST['nama'],
         'tanggal_checkin' => $_POST['tanggal_checkin'],
         'tanggal_checkout' => $_POST['tanggal_checkout'],
         'status' => 'PENDING' // Status awal
     );
 
+    
+
+   // Query untuk menambahkan pemesanan ke dalam tabel
+ $query = "INSERT INTO reservation (nama, tanggal_checkin, tanggal_checkout, status) VALUES (?, ?, ?, ?, ?)";
   
     // Simpan data pemesanan ke histori
     if (!isset($_SESSION['history'])) {
@@ -42,6 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
     $_SESSION['history'][] = $reservation;
 
     $message = "Pemesanan berhasil!";
+}
+function generateReservationId() {
+  // Generate a random 6-digit number as the reservation ID
+  return mt_rand(100000, 999999);
 }
 
 if (isset($_GET['cancel'])) {
