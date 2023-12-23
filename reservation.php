@@ -15,12 +15,7 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
   
-  if ($conn->query($sql) === TRUE) {
     $reservation_id = $conn->insert_id; // Ambil ID pemesanan baru
-    echo "Pemesanan berhasil! ID Pemesanan Anda: " . $reservation_id;
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
   // Simpan data pemesanan ke session
     $reservation = array(
         'id' => $reservation_id,
