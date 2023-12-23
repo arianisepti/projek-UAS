@@ -15,10 +15,15 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
   
-  $id = $conn->insert_id;
+  if ($conn->query($sql) === TRUE) {
+    $reservation_id = $conn->insert_id; // Ambil ID pemesanan baru
+    echo "Pemesanan berhasil! ID Pemesanan Anda: " . $reservation_id;
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
   // Simpan data pemesanan ke session
     $reservation = array(
-        'id' => $id,
+        'id' => $reservation_id,
         'nama' => $_POST['nama'],
         'tanggal_checkin' => $_POST['tanggal_checkin'],
         'tanggal_checkout' => $_POST['tanggal_checkout'],
