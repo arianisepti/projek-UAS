@@ -16,6 +16,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
     // Simpan data pemesanan ke session
     $reservation = array(
+        'id' => $_POST['id'],
         'nama' => $_POST['nama'],
         'tanggal_checkin' => $_POST['tanggal_checkin'],
         'tanggal_checkout' => $_POST['tanggal_checkout'],
@@ -23,11 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
     );
 
      // Query untuk menambahkan pemesanan ke dalam tabel
-     $query = "INSERT INTO reservation (nama, tanggal_checkin, tanggal_checkout, status) VALUES (?, ?, ?, ?)";
+     $query = "INSERT INTO reservation (id, nama, tanggal_checkin, tanggal_checkout, status) VALUES (?, ?, ?, ?, ?)";
 
      // Gunakan prepared statement untuk mencegah SQL injection
      $stmt = $conn->prepare($query);
-     $stmt->bind_param("ssss", $reservation['nama'], $reservation['tanggal_checkin'], $reservation['tanggal_checkout'], $reservation['status']);
+     $stmt->bind_param("ssss", $reservation['id'], $reservation['nama'], $reservation['tanggal_checkin'], $reservation['tanggal_checkout'], $reservation['status']);
  
      // Eksekusi statement
      $stmt->execute();
@@ -410,7 +411,7 @@ $conn->close();
 
 
       <!-- Reservation Start -->
-      <div class="row border rounded-5 p-3 shadow box-area" style="background-color : white">
+      <div class="container -xxl py-5" style="background-color : white">
       <form class="col-md-6 right-box" id="myForm" action="reservation.php" method="post">
           <div class="row align-items-center">
                 <div class="header-text mb-4">
@@ -437,6 +438,7 @@ $conn->close();
         <h2>Histori Pemesanan</h2>
         <table>
             <tr>
+                <th>ID Pemesanan</th>
                 <th>Nama</th>
                 <th>Tanggal Check-in</th>
                 <th>Tanggal Check-out</th>
@@ -445,6 +447,7 @@ $conn->close();
             </tr>
             <?php foreach ($_SESSION['history'] as $index => $reservation) : ?>
                 <tr>
+                    <td><?php echo $reservation['id']; ?></td>
                     <td><?php echo $reservation['nama']; ?></td>
                     <td><?php echo $reservation['tanggal_checkin']; ?></td>
                     <td><?php echo $reservation['tanggal_checkout']; ?></td>
