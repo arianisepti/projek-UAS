@@ -15,26 +15,20 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
   
+  $id = $conn->insert_id;
   // Simpan data pemesanan ke session
     $reservation = array(
+        'id' => $id,
         'nama' => $_POST['nama'],
         'tanggal_checkin' => $_POST['tanggal_checkin'],
         'tanggal_checkout' => $_POST['tanggal_checkout'],
         'status' => 'PENDING' // Status awal
     );
 
-    
-
+  
      // Query untuk menambahkan pemesanan ke dalam tabel
      $query = "INSERT INTO reservation (nama, tanggal_checkin, tanggal_checkout, status) VALUES (?, ?, ?, ?, ?)";
 
-
-     // Assuming you have a database connection named $conn
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
-
-    // Retrieve the auto-incremented ID
-    $reservation['id'] = $stmt->insert_id;
 
     
     // Simpan data pemesanan ke histori
