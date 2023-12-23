@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
   
   // Simpan data pemesanan ke session
     $reservation = array(
-        'id',
+        'id' => NULL,
         'nama' => $_POST['nama'],
         'tanggal_checkin' => $_POST['tanggal_checkin'],
         'tanggal_checkout' => $_POST['tanggal_checkout'],
