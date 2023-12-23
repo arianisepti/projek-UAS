@@ -52,6 +52,19 @@ if (isset($_GET['cancel'])) {
     }
 }
 
+if (isset($_GET['delete'])) {
+    $index = $_GET['delete'];
+
+    if (isset($_SESSION['history'][$index])) {
+        // Hapus pemesanan dari histori
+        unset($_SESSION['history'][$index]);
+        $message = "Histori pemesanan berhasil dihapus!";
+    } else {
+        $message = "Pemesanan tidak ditemukan.";
+    }
+}
+
+
 $conn->close();
 
 ?>
