@@ -14,9 +14,11 @@ if (!$conn) {
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
-    // Simpan data pemesanan ke session
+  // Generate a random 6-digit number as the reservation ID
+  $reservationId = generateReservationId();
+  
+  // Simpan data pemesanan ke session
     $reservation = array(
-        'id' => $_POST['id'],
         'nama' => $_POST['nama'],
         'tanggal_checkin' => $_POST['tanggal_checkin'],
         'tanggal_checkout' => $_POST['tanggal_checkout'],
@@ -35,6 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
  
      // Tutup statement
      $stmt->close();
+
+     function generateReservationId() {
+      // Generate a random 6-digit number as the reservation ID
+      return mt_rand(100000, 999999);
+  }
 
     // Simpan data pemesanan ke histori
     if (!isset($_SESSION['history'])) {
