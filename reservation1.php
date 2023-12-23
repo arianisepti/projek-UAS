@@ -452,6 +452,7 @@ $conn->close();
                     <td>
                         <?php if ($reservation['status'] == 'PENDING') : ?>
                             <a href="reservation1.php?cancel=<?php echo $index; ?>">Batal</a>
+                            <a href="index.php?delete=<?php echo $index; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus histori ini?')">Hapus</a>
                         <?php endif; ?>
                     </td>
                 </tr>
