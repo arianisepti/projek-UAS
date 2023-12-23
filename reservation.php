@@ -5,7 +5,7 @@ $username = "root";
 $password = ""; 
 $database = "uas";
 
-$conn = mysqli_connect($host, $username, $password, $database);
+$conn = new mysqli($host, $username, $password, $database);
 
 if (!$conn) {
     die("Koneksi ke database gagal: " . mysqli_connect_error());
