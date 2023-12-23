@@ -13,6 +13,9 @@ if (!$conn) {
 
 session_start();
 
+ // Query untuk menambahkan pemesanan ke dalam tabel
+ $query = "INSERT INTO reservation (nama, tanggal_checkin, tanggal_checkout, status) VALUES (?, ?, ?, ?, ?)";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
   
       if ($conn->query($query) === TRUE) {
@@ -32,11 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
     );
 
   
-     // Query untuk menambahkan pemesanan ke dalam tabel
-     $query = "INSERT INTO reservation (nama, tanggal_checkin, tanggal_checkout, status) VALUES (?, ?, ?, ?, ?)";
-
-
-    
     // Simpan data pemesanan ke histori
     if (!isset($_SESSION['history'])) {
         $_SESSION['history'] = array();
