@@ -56,7 +56,7 @@ if (isset($_GET['cancel'])) {
 
     if (isset($_SESSION['history'][$index])) {
         // Ubah status pemesanan menjadi "DIBATALKAN"
-        $_SESSION['history'][$index]['status'] = 'DIBATALKAN';
+        $_SESSION['history'][$index]['status'] = 'CANCELLED';
         $message = "Pemesanan berhasil dibatalkan!";
     }
 }
