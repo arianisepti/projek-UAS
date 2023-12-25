@@ -448,12 +448,13 @@ $conn->close();
         <h2>Histori Pemesanan</h2>
         <table>
             <tr>
-                <th>ID Pemesanan</th>
-                <th>Nama</th>
-                <th>Tanggal Check-in</th>
-                <th>Tanggal Check-out</th>
-                <th>Status</th>
-                <th>Aksi</th>
+                <th>RESERVATION ID</th>
+                <th>NAME</th>
+                <th>CHECK-IN</th>
+                <th>CHECK-OUT</th>
+                <th>STATUS</th>
+                <th>CONTINUE/CANCEL</th>
+                <th>ACTION</th>
             </tr>
             <?php foreach ($_SESSION['history'] as $index => $reservation) : ?>
                 <tr>
@@ -464,15 +465,17 @@ $conn->close();
                     <td><?php echo $reservation['status']; ?></td>
                     <td>
                         <?php if ($reservation['status'] == 'PENDING') : ?>
-                            <a href="reservation1.php?cancel=<?php echo $index; ?>">Batal</a> 
+                            <a href="reservation1.php?cancel=<?php echo $index; ?>">Cancel</a> 
                         <?php endif; ?>
-                        <a href="reservation1.php?delete=<?php echo $index; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus histori ini?')">Hapus</a>
+                    </td>
+                    <td>
+                        <a href="reservation1.php?delete=<?php echo $index; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus histori ini?')">Erase</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </table>
     <?php else : ?>
-        <p>Belum ada histori pemesanan.</p>
+        <p>Belum ada histori pemesanan</p>
     <?php endif; ?>
 
       <!-- Reservation End -->
