@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $host = "localhost";
 $username = "root"; 
@@ -7,11 +8,10 @@ $database = "uas";
 
 $conn = new mysqli($host, $username, $password, $database);
 
-if (!$conn) {
-    die("Koneksi ke database gagal: " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Koneksi ke database gagal: " . $conn->connect_error);
 }
 
-session_start();
 
 $placeTypes = [
   'apartment' => 150,  // Define prices for each place type
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
     
 
    // Query untuk menambahkan pemesanan ke dalam tabel
- $query = "INSERT INTO reservations (nama, tanggal_checkin, tanggal_checkout, status) VALUES (?, ?, ?, ?, ?)";
+ $query = "INSERT INTO reservations (id, nama, tanggal_checkin, tanggal_checkout, status, place_type, price) VALUES (?, ?, ?, ?, ?, ?, ?)";
   
     // Simpan data pemesanan ke histori
     if (!isset($_SESSION['history'])) {
@@ -453,7 +453,7 @@ $conn->close();
                     <input type="date" class="form-control form-control-lg bg-white fs-6"  name="tanggal_checkout" required placeholder="Check-out">
                 </div>     
                 <div class="input-group mb-3">
-                    <button class="btn btn-lg btn-primary w-100 fs-6"type="submit" name="pesan">GO</button>
+                    <button class="btn btn-lg btn-primary w-100 fs-6"type="submit" name="pesan">Booking</button>
                 </div>
           </div>
        </form> 
