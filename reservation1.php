@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-$host = "localhost";
+$servername = "localhost";
 $username = "root"; 
 $password = ""; 
-$database = "uas";
+$dbname = "uas";
 
-$conn = new mysqli($host, $username, $password, $database);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Koneksi ke database gagal: " . $conn->connect_error);
@@ -435,7 +435,7 @@ $conn->close();
 
 
       <!-- Reservation Start -->
-      <div class="container -xxl py-5" style="background-color : white">
+      <div class="container -xxl py-5" style="background-color : #181958">
       <form class="col-md-6 right-box" id="myForm" action="reservation1.php" method="post">
           <div class="row align-items-center">
                 <div class="header-text mb-4">
