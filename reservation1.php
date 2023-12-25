@@ -30,7 +30,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
     
 
    // Query untuk menambahkan pemesanan ke dalam tabel
- $query = "INSERT INTO reservations (id, nama, tanggal_checkin, tanggal_checkout, status, place_type, price) VALUES ($reservation)";
+   $stmt = $conn->prepare("INSERT INTO reservations (id, nama, tanggal_checkin, tanggal_checkout, status, place_type, price) VALUES (?, ?, ?, ?, ?, ?, ?)");
+   $stmt->bind_param("sssssss", $reservation['id'], $reservation['nama'], $reservation['tanggal_checkin'], $reservation['tanggal_checkout'], $reservation['status'], $reservation['place_type'], $reservation['price']);
+
+   // Execute the statement
+   $stmt->execute();
+
+   // Close the statement
+   $stmt->close();
   
     // Simpan data pemesanan ke histori
     if (!isset($_SESSION['history'])) {
