@@ -13,12 +13,6 @@ if ($conn->connect_error) {
 }
 
 
-$placeTypes = [
-  'apartment' => 150,  // Define prices for each place type
-  'villa' => 200,
-  'hotel' => 100
-];
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
  
@@ -30,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
         'tanggal_checkin' => $_POST['tanggal_checkin'],
         'tanggal_checkout' => $_POST['tanggal_checkout'],
         'status' => 'PENDING', // Status awal
-        'price' => $placeTypes[$_POST['place_type']] 
+        'price' => calculatePrice($_POST['place_type'])
     );
 
     
@@ -49,6 +43,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
 function generateReservationId() {
   // Generate a random 6-digit number as the reservation ID
   return mt_rand(100000, 999999);
+}
+
+function calculatePrice($placeType)
+{
+    $placeTypes = [
+        'apartment' => 150,
+        'villa' => 200,
+        'hotel' => 100
+    ];
+
+    return $placeTypes[$placeType] ?? 0;
 }
 
 if (isset($_GET['cancel'])) {
