@@ -13,15 +13,24 @@ if (!$conn) {
 
 session_start();
 
+$placeTypes = [
+  'apartment' => 150,  // Define prices for each place type
+  'villa' => 200,
+  'hotel' => 100
+];
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["pesan"])) {
  
   // Simpan data pemesanan ke session
     $reservation = array(
         'id' => generateReservationId(),
         'nama' => $_POST['nama'],
+        'place_type' => $_POST['place_type'], 
         'tanggal_checkin' => $_POST['tanggal_checkin'],
         'tanggal_checkout' => $_POST['tanggal_checkout'],
-        'status' => 'PENDING' // Status awal
+        'status' => 'PENDING', // Status awal
+        'price' => $placeTypes[$_POST['place_type']] 
     );
 
     
@@ -428,16 +437,23 @@ $conn->close();
                      <p>RESERVATION</p>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control form-control-lg bg-light fs-6" name="nama" required placeholder="Nama Lengkap">
+                    <input type="text" class="form-control form-control-lg bg-white fs-6" name="nama" required placeholder="Nama Lengkap">
                 </div>
                 <div class="input-group mb-3">
-                    <input type="date" class="form-control form-control-lg bg-light fs-6"  name="tanggal_checkin" required placeholder="Check-in">
+                  <select class="form-control form-control-lg bg-white fs-6" name="place_type" required>
+                      <option value="apartment">Apartment</option>
+                      <option value="villa">Villa</option>
+                      <option value="hotel">Hotel</option>
+                  </select>
+              </div>
+                <div class="input-group mb-3">
+                    <input type="date" class="form-control form-control-lg bg-white fs-6"  name="tanggal_checkin" required placeholder="Check-in">
                 </div>   
                 <div class="input-group mb-3">
-                    <input type="date" class="form-control form-control-lg bg-light fs-6"  name="tanggal_checkout" required placeholder="Check-out">
+                    <input type="date" class="form-control form-control-lg bg-white fs-6"  name="tanggal_checkout" required placeholder="Check-out">
                 </div>     
                 <div class="input-group mb-3">
-                    <button class="btn btn-lg btn-primary w-100 fs-6"type="submit" name="pesan">Reservation</button>
+                    <button class="btn btn-lg btn-primary w-100 fs-6"type="submit" name="pesan">GO</button>
                 </div>
           </div>
        </form> 
@@ -445,13 +461,15 @@ $conn->close();
 
 
     <?php if (isset($_SESSION['history'])) : ?>
-        <h2>Histori Pemesanan</h2>
+        <h2>Reservation History</h2>
         <table>
             <tr>
                 <th>RESERVATION ID</th>
                 <th>NAME</th>
+                <th>TYPE</th>
                 <th>CHECK-IN</th>
                 <th>CHECK-OUT</th>
+                <th>AMOUNT</th>
                 <th>STATUS</th>
                 <th>CONTINUE/CANCEL</th>
                 <th>ACTION</th>
@@ -460,8 +478,10 @@ $conn->close();
                 <tr>
                     <td><?php echo $reservation['id']; ?></td>
                     <td><?php echo $reservation['nama']; ?></td>
+                    <td><?php echo $reservation['place_type']; ?></td>
                     <td><?php echo $reservation['tanggal_checkin']; ?></td>
                     <td><?php echo $reservation['tanggal_checkout']; ?></td>
+                    <td><?php echo $reservation['price']; ?></td>
                     <td><?php echo $reservation['status']; ?></td>
                     <td>
                         <?php if ($reservation['status'] == 'PENDING') : ?>
