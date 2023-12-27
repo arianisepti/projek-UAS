@@ -460,9 +460,15 @@ $conn->close();
               </div>
                 <div class="input-group mb-3">
                     <input type="date" class="form-control form-control-lg bg-white fs-6"  name="tanggal_checkin" required placeholder="Check-in">
+                    <br>
+                    <span style="font-size: 80%; color: #888;">Check-in</span>
+                    <br>
                 </div>   
                 <div class="input-group mb-3">
                     <input type="date" class="form-control form-control-lg bg-white fs-6"  name="tanggal_checkout" required placeholder="Check-out">
+                    <br>
+                    <span style="font-size: 80%; color: #888;">Check-out</span>
+                    <br>
                 </div>     
                 <div class="input-group mb-3">
                     <button class="btn btn-lg btn-primary w-100 fs-6"type="submit" name="pesan">Booking</button>
