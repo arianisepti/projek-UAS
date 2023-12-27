@@ -442,6 +442,7 @@ $conn->close();
 
 
       <!-- Reservation Start -->
+      <div id="tab-R">
       <div class="container -xxl py-5" style="background-color : #181958">
       <form class="col-md-6 right-box" id="myForm" action="reservation1.php" method="post">
           <div class="row align-items-center">
@@ -465,7 +466,8 @@ $conn->close();
                     <input type="date" class="form-control form-control-lg bg-white fs-6"  name="tanggal_checkout" required placeholder="Check-out">
                 </div>     
                 <div class="input-group mb-3">
-                    <button class="btn btn-lg btn-primary w-100 fs-6"type="submit" name="pesan">Booking</button>
+                    <a data-bs-toggle="pill"
+                    href="#tab-R"><button class="btn btn-lg btn-primary w-100 fs-6"type="submit" name="pesan">Booking</button></a>
                 </div>
           </div>
        </form> 
@@ -509,6 +511,7 @@ $conn->close();
     <?php else : ?>
         <p>Belum ada histori pemesanan</p>
     <?php endif; ?>
+    </div>
 
       <!-- Reservation End -->
 
