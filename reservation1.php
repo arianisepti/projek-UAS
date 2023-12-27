@@ -442,7 +442,7 @@ $conn->close();
 
 
       <!-- Reservation Start -->
-      <div id="tab-R">
+      <div id="tab-R" class="tab-pane fade show p-0 active">
       <div class="container -xxl py-5" style="background-color : #181958">
       <form class="col-md-6 right-box" id="myForm" action="reservation1.php" method="post">
           <div class="row align-items-center">
