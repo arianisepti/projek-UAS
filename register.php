@@ -83,13 +83,14 @@ $conn->close();
                 <div class="input-group mb-3">
                     <input type="password" class="form-control form-control-lg bg-light fs-6" id="password" name="password" placeholder="Password">
                 </div>
+                <label class="mb-1">Position:
                 <div class="input-group mb-3">
                     <select class="form-control form-control-lg bg-light fs-6" id="role" name="role" >
                         <option value="client">Client</option>
                         <option value="company">Company</option>
                     </select>
                 </div>
-                
+                </label>
                 <div class="input-group mb-3">
                     <button class="btn btn-lg btn-primary w-100 fs-6"type="submit" name="register">Register</button>
                 </div>

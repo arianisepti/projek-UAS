@@ -445,7 +445,7 @@ $conn->close();
       <div class="container -xxl py-5" style="background-color : #181958">
       <form class="col-md-6 right-box" id="myForm" action="reservation1.php" method="post">
           <div class="row align-items-center">
-                <div class="text-white mb-4">
+                <div class="text-white mb-5">
                      <p>RESERVATION</p>
                 </div>
                 <div class="input-group mb-3">
@@ -463,7 +463,7 @@ $conn->close();
                     <input type="date" class="form-control form-control-lg bg-white fs-6"  name="tanggal_checkin" required placeholder="Check-in">
                 </div>   
                 </label>
-                <label class="text-white mb-1">Check-in:
+                <label class="text-white mb-1">Check-out:
                 <div class="input-group mb-3">
                     <input type="date" class="form-control form-control-lg bg-white fs-6"  name="tanggal_checkout" required placeholder="Check-out">
                 </div>   

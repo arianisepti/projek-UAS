@@ -86,13 +86,14 @@ $conn->close();
                 <div class="input-group mb-3">
                     <input type="password" class="form-control form-control-lg bg-light fs-6" id="password" name="password" placeholder="Password">
                 </div>
+                <label class="mb-1">Position:
                 <div>
                     <select class="form-control form-control-lg bg-light fs-6" id="role" name="role" >
                         <option value="client">Client</option>
                         <option value="company">Company</option>
                     </select>
                 </div>
-                
+               </label>
                 <div class="input-group mb-5 d-flex justify-content-between">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="formCheck">
