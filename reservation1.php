@@ -458,7 +458,7 @@ $conn->close();
                       <option value="hotel">Hotel</option>
                   </select>
               </div>
-              <label>Check-in:
+              <label text-white>Check-in:
                 <div class="input-group mb-3">
                     <input type="date" class="form-control form-control-lg bg-white fs-6"  name="tanggal_checkin" required placeholder="Check-in">
                 </div>   
